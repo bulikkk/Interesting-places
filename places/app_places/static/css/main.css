@@ -7,7 +7,7 @@ html, body {
 #navbar {
     height: 100%;
     width: 25%;
-    background-color: #3c3c3c;
+    background-color: #38414E;
     position: fixed;
     left: 0;
 }
@@ -16,4 +16,23 @@ html, body {
     height: 100%;
     width: 75%;
     float: right;
+    position: relative;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1000px) {
+    #navbar {
+        height: 25%;
+        width: 100%;
+        background-color: #38414E;
+        position: fixed;
+        top: 0;
+    }
+
+    #map {
+        height: 75%;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
 }
