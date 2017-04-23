@@ -7,7 +7,7 @@ html, body {
 #navbar {
     height: 100%;
     width: 25%;
-    background-color: #38414E;
+    background-color: #334433;
     position: fixed;
     left: 0;
 }
@@ -16,23 +16,48 @@ html, body {
     height: 100%;
     width: 75%;
     float: right;
-    position: relative;
-    overflow: hidden;
+}
+
+#brand {
+    text-align: center;
+}
+
+.navbar-brand {
+    text-decoration: none;
+}
+
+.navbar-brand > h1 {
+    margin-top: 20px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 6em;
+    color: #8BA88B;
+}
+
+@media screen and (max-width: 1200px) {
+    .navbar-brand > h1 {
+        font-size: 5em;
+    }
 }
 
 @media screen and (max-width: 1000px) {
     #navbar {
-        height: 25%;
+        height: 10%;
         width: 100%;
-        background-color: #38414E;
+        background-color: #334433;
         position: fixed;
         top: 0;
     }
 
     #map {
-        height: 75%;
+        height: 90%;
         width: 100%;
-        position: fixed;
-        bottom: 0;
+        position: fixed !important;
+        bottom: 0 !important;
     }
+
+    .navbar-brand > h1 {
+        font-size: 2em;
+        margin-top: 10px;
+    }
+
 }

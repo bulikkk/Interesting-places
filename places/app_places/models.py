@@ -21,6 +21,18 @@ class Place(models.Model):
     def __str__(self):
         return "{}, {}, {}, {}, {}, {}".format(self.name, self.address, self.phone_number, self.url, self.position, self.description)
 
+    def as_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "address": self.address,
+            "phone_number": self.phone_number,
+            "url": self.url,
+            "lat": self.position_lat,
+            "lng": self.position_lng
+        }
+
 
 
 
