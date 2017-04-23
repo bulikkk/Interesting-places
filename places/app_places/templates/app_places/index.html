@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,22 +10,46 @@
       <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
   </head>
   <body>
-    <div id="navbar">
+  <div id="body">
+    <div id="menu">
         <div id="brand">
             <a class="navbar-brand" href="{% url 'main' %}">
                 <h1>.point</h1>
             </a>
         </div>
+        <div id="navbar">
+            <ul class="navbar-btns">
+                <li><a href=""><img src="{% static '../../static/003-signs.png' %}"></a></li>
+                <li><a href=""><img src="{% static '../../static/002-web.png' %}"></a></li>
+                <li><a href=""><img src="{% static '../../static/001-like.png' %}"></a></li>
+                <li><img class="side-bar-button on" src="{% static '../../static/005-next.png' %}"></li>
+                <li><img class="side-bar-button off hidden" src="{% static '../../static/006-back.png' %}"></li>
+            </ul>
+        </div>
         {% block content %}
 
         {% endblock %}
     </div>
+    <div id="side-bar" class="">
+
+    </div>
 
     <div id="map"></div>
+  </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var sidebar = document.querySelectorAll('.side-bar-button');
+            console.log(sidebar);
+            for (var i=0; i<sidebar.length; i++) {
+                sidebar[i].addEventListener('click', function () {
+                    document.querySelector('.side-bar-button.on').classList.toggle('hidden');
+                    document.querySelector('.side-bar-button.off').classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 
     <script>
-
-
         function initMap() {
 
             var places = (("{{ places }}").replace(/&(l|g|quo)t;/g, function(a,b){
@@ -141,18 +167,25 @@
                             strokeWeight: 0
                         },
                     });
-                    var contentString = '<h1>' + obj[i].fields.description + '</h1>';
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
-                    marker.addListener('click', function() {
-                        infowindow.open(map, marker);
-                    });
+                    var content = (
+                        '<h1>' + obj[i].fields.name + '</h1>' +
+                        '<h2>' + obj[i].fields.description + '</h2>' +
+                        '<h3>Adres: ' + obj[i].fields.address + '</h3>' +
+                        '<h3>Tal: ' + obj[i].fields.phone_number + '</h3>' +
+                        '<a href="'+ obj[i].fields.url + '"><h3>' + obj[i].fields.url + '</h3></a>'
+                    );
 
 
+                    var infowindow = new google.maps.InfoWindow();
+
+
+                    google.maps.event.addListener(marker,'click', (function(marker,content, infowindow){
+                        return function() {
+                            infowindow.setContent(content);
+                            infowindow.open(map,marker);
+                        };
+                    })(marker,content,infowindow));
                 }
-
-
 }
 
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
