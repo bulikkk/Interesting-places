@@ -21,7 +21,17 @@ html, body {
     left: 0;
 }
 
+#menu.wide {
+    width: 25%;
+}
+
 #map {
+    height: 100%;
+    width: 75%;
+    float: right;
+}
+
+#map.wide {
     height: 100%;
     width: calc(100% - 80px);
     float: right;
@@ -61,15 +71,6 @@ html, body {
     bottom: 10px;
 }
 
-
-
-
-@media screen and (max-width: 1200px) {
-    .navbar-brand > h1 {
-        font-size: 5em;
-    }
-}
-
 @media screen and (max-width: 1000px) {
     #menu {
         height: 10%;
@@ -79,7 +80,22 @@ html, body {
         top: 0;
     }
 
+    #menu.wide {
+        height: 10%;
+        width: 100%;
+        background-color: #334433;
+        position: fixed;
+        top: 0;
+    }
+
     #map {
+        height: 90%;
+        width: 100%;
+        position: fixed !important;
+        bottom: 0 !important;
+    }
+
+    #map.wide {
         height: 90%;
         width: 100%;
         position: fixed !important;

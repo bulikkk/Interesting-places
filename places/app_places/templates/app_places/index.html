@@ -11,7 +11,7 @@
   </head>
   <body>
   <div id="body">
-    <div id="menu">
+    <div id="menu" class="">
         <div id="brand">
             <a class="navbar-brand" href="{% url 'main' %}">
                 <h1>.point</h1>
@@ -34,8 +34,9 @@
 
     </div>
 
-    <div id="map"></div>
+    <div id="map" class="wide"></div>
   </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelectorAll('.side-bar-button');
@@ -44,6 +45,9 @@
                 sidebar[i].addEventListener('click', function () {
                     document.querySelector('.side-bar-button.on').classList.toggle('hidden');
                     document.querySelector('.side-bar-button.off').classList.toggle('hidden');
+                    document.querySelector('#map').classList.toggle('wide');
+                    document.querySelector('#menu').classList.toggle('wide');
+
                 });
             }
         });
