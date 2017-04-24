@@ -1,6 +1,17 @@
 from django.db import models
 from django.core.validators import RegexValidator
 
+CATEGORY_CHOICE = {
+    1: 'A',
+    2: 'B',
+    3: 'C1',
+    4: 'C2',
+    5: 'C3',
+    6: 'D1',
+    7: 'D2',
+    8: 'D3'
+}
+
 
 class Place(models.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
@@ -9,10 +20,11 @@ class Place(models.Model):
     name = models.CharField(max_length=64)
     description = models.TextField()
     address = models.CharField(max_length=256)
-    phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True)
-    url = models.URLField()
+    phone_number = models.CharField(max_length=15, validators=[phone_regex], blank=True, null=True)
+    url = models.URLField(null=True)
     position_lat = models.FloatField()
     position_lng = models.FloatField()
+    category = models.IntegerField(choices=CATEGORY_CHOICE.items())
 
     @property
     def position(self):

@@ -11,45 +11,79 @@
   </head>
   <body>
   <div id="body">
-    <div id="menu" class="">
-        <div id="brand">
-            <a class="navbar-brand" href="{% url 'main' %}">
-                <h1>.point</h1>
-            </a>
-        </div>
-        <div id="navbar">
-            <ul class="navbar-btns">
-                <li><a href=""><img src="{% static '../../static/003-signs.png' %}"></a></li>
-                <li><a href=""><img src="{% static '../../static/002-web.png' %}"></a></li>
-                <li><a href=""><img src="{% static '../../static/001-like.png' %}"></a></li>
-                <li><img class="side-bar-button on" src="{% static '../../static/005-next.png' %}"></li>
-                <li><img class="side-bar-button off hidden" src="{% static '../../static/006-back.png' %}"></li>
-            </ul>
-        </div>
-        {% block content %}
+      <div id="menu" class="">
+          <div id="brand">
+              <a class="navbar-brand" href="{% url 'main' %}">
+                  <h1>.point</h1>
+              </a>
+          </div>
+          <div id="navbar">
+              <ul class="navbar-btns">
+                  <li><a href="#" id="search-btn"><img src="{% static '../../static/003-signs.png' %}"><span class="menu-help hidden">wyszukaj</span></a></li>
+                  <li><a href="#" id="category-btn"><img src="{% static '../../static/002-web.png' %}"><span class="menu-help hidden">kategorie</span></a></li>
+                  <li><a href="#" id="favourite-btn"><img src="{% static '../../static/001-like.png' %}"><span class="menu-help hidden">ulubione</span></a></li>
+                  <li><img class="side-bar-button on" src="{% static '../../static/005-next.png' %}"></li>
+                  <li><img class="side-bar-button off hidden" src="{% static '../../static/006-back.png' %}"></li>
+              </ul>
+          </div>
+      </div>
+      <div class="options-bar search hidden">
 
-        {% endblock %}
-    </div>
-    <div id="side-bar" class="">
+      </div>
 
-    </div>
+      <div class="options-bar category">
+          <h1>wybierz kategorię</h1>
+          <div class="categories">
+              <ul class="options-btns">
+                  <li><button type="button">category 1</button></li>
+                  <li><button type="button">category 2</button></li>
+                  <li><button type="button">category 3</button></li>
+                  <li><button type="button">category 4</button></li>
+                  <li><button type="button">category 5</button></li>
+                  <li><button type="button">category 6</button></li>
+              </ul>
+          </div>
+      </div>
 
-    <div id="map" class="wide"></div>
+      <div class="options-bar favourite hidden">
+
+      </div>
+
+
+    <div id="map" class=""></div>
   </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var sidebar = document.querySelectorAll('.side-bar-button');
-            console.log(sidebar);
             for (var i=0; i<sidebar.length; i++) {
                 sidebar[i].addEventListener('click', function () {
                     document.querySelector('.side-bar-button.on').classList.toggle('hidden');
                     document.querySelector('.side-bar-button.off').classList.toggle('hidden');
-                    document.querySelector('#map').classList.toggle('wide');
-                    document.querySelector('#menu').classList.toggle('wide');
-
+                    if (document.querySelector('.side-bar-button.on').classList.contains('hidden')) {
+                        document.querySelector('#map').style.width = '80%';
+                        document.querySelector('#menu').style.width = '20%';
+                        for (var k=0; k<document.querySelectorAll('.options-bar').length; k++) {
+                            document.querySelectorAll('.options-bar')[k].style.marginLeft = '20%';
+                        }
+                    }
+                    else {
+                        document.querySelector('#menu').style.width = '80px';
+                        document.querySelector('#map').style.width = 'calc(100% - 80px)';
+                        for (var k=0; k<document.querySelectorAll('.options-bar').length; k++) {
+                            document.querySelectorAll('.options-bar')[k].style.marginLeft = '80px';
+                        }
+                    }
+                    for (var j=0; j<document.querySelectorAll('.menu-help').length; j++) {
+                        document.querySelectorAll('.menu-help')[j].classList.toggle('hidden');
+                    }
                 });
             }
+
+            document.querySelector('#category-btn').addEventListener('click', function () {
+                document.querySelector('.options-bar.category').classList.toggle('hidden');
+            });
+
         });
     </script>
 

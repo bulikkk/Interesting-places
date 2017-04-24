@@ -21,20 +21,11 @@ html, body {
     left: 0;
 }
 
-#menu.wide {
-    width: 25%;
-}
-
 #map {
-    height: 100%;
-    width: 75%;
-    float: right;
-}
-
-#map.wide {
     height: 100%;
     width: calc(100% - 80px);
     float: right;
+    z-index: 1000;
 }
 
 #brand {
@@ -62,27 +53,80 @@ html, body {
     display: block;
     position: relative;
 }
+
+.navbar-btns > li > a {
+    text-decoration: none;
+    height: 100%;
+    display:inline-block;
+    width:100%;
+    height:100%;
+}
+
 .navbar-btns > li > a > img {
     height: 40px;
+    color: white;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
 }
 
 .side-bar-button {
     height: 40px;
     bottom: 10px;
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
 }
+
+.menu-help {
+    color: white;
+    font-family: 'Comfortaa', cursive;
+    font-size: 1em;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+.options-bar {
+    position: absolute;
+    background-color: rgba(52, 68, 52, 0.5);
+    height: 100%;
+    width: 25%;
+    z-index: 1001;
+    margin-left: 80px;
+}
+
+.options-bar > h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.5em;
+    color: #8BA88B;
+}
+
+.options-btns {
+    padding: 0;
+}
+
+.options-btns > li {
+    margin-top: 22px;
+    margin-bottom: 22px;
+    display: block;
+    position: relative;
+}
+
+.options-btns > li > button {
+    background-color: #6e926e;
+    width: 80%;
+    height: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border: 2px solid black;
+}
+
 
 @media screen and (max-width: 1000px) {
     #menu {
         height: 10%;
-        width: 100%;
-        background-color: #334433;
-        position: fixed;
-        top: 0;
-    }
-
-    #menu.wide {
-        height: 10%;
-        width: 100%;
+        width: 100% !important;
         background-color: #334433;
         position: fixed;
         top: 0;
@@ -90,21 +134,15 @@ html, body {
 
     #map {
         height: 90%;
-        width: 100%;
-        position: fixed !important;
-        bottom: 0 !important;
-    }
-
-    #map.wide {
-        height: 90%;
-        width: 100%;
+        width: 100% !important;
         position: fixed !important;
         bottom: 0 !important;
     }
 
     .navbar-brand > h1 {
         font-size: 2em;
-        margin-top: 10px;
+        vertical-align: middle;
+
     }
 
 }
