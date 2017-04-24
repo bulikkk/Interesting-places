@@ -10,14 +10,9 @@ class MainView(View):
     def get(self, request):
         p = Place.objects.all()
         qs_json = serializers.serialize('json', p)
-        # di = [obj.as_dict() for obj in p]
-
         ctx = {'places': qs_json}
         return render(request, 'app_places/main.html', ctx)
 
-# from django.core import serializers
-# p = Place.objects.all()
-#         qs_json = serializers.serialize('json', p)
-#
-#         ctx = {'places': qs_json}
-#         return render(request, 'app_places/main.html', ctx)
+    def post(self, request):
+        # stworzenie formularza!
+        pass

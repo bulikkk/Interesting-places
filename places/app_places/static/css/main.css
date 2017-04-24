@@ -15,15 +15,16 @@ html, body {
 
 #menu {
     height: 100%;
-    width: 80px;
-    background-color: #334433;
-    position: fixed;
+    width: 200px;
+    background-color: rgb(2,40,86);
+    position: absolute;
     left: 0;
+    z-index: 1001;
 }
 
 #map {
     height: 100%;
-    width: calc(100% - 80px);
+    width: 100%;
     float: right;
     z-index: 1000;
 }
@@ -40,7 +41,7 @@ html, body {
     margin-top: 20px;
     font-family: 'Comfortaa', cursive;
     font-size: 1.5em;
-    color: #8BA88B;
+    color: #FF7171;
 }
 
 .navbar-btns {
@@ -64,7 +65,7 @@ html, body {
 
 .navbar-btns > li > a > img {
     height: 40px;
-    color: white;
+    color: #FF7171;
     -webkit-filter: invert(100%);
     filter: invert(100%);
 }
@@ -72,26 +73,27 @@ html, body {
 .side-bar-button {
     height: 40px;
     bottom: 10px;
+    color: #FF7171;
     -webkit-filter: invert(100%);
     filter: invert(100%);
 }
 
 .menu-help {
-    color: white;
+    color: #FF7171;
     font-family: 'Comfortaa', cursive;
     font-size: 1em;
     position: absolute;
-    right: 20px;
+    left: 60px;
     top: 10px;
 }
 
 .options-bar {
     position: absolute;
-    background-color: rgba(52, 68, 52, 0.5);
+    background-color: rgba(2,40,86,0.5);
     height: 100%;
     width: 25%;
     z-index: 1001;
-    margin-left: 80px;
+    margin-left: 200px;
 }
 
 .options-bar > h1 {
