@@ -31,7 +31,7 @@
               </ul>
           </div>
       </div>
-      <div class="options-bar search">
+      <div class="options-bar search hidden">
           <h1>wyszukaj</h1>
           <form action="" method="GET" class="search-form">
               <input id="search-input" type="text" placeholder="wyszukaj" name="search-input" oninput="loaddata();">
@@ -63,6 +63,7 @@
     <div id="map" class=""></div>
   </div>
 
+
     <script>
         function loaddata() {
             var text = $(document).find("#search-input").val();
@@ -88,7 +89,6 @@
                 });
             }
         }
-
     </script>
 
     <script>
@@ -116,7 +116,43 @@
                 });
             }
             document.querySelector('#category-btn').addEventListener('click', function () {
-                document.querySelector('.options-bar.category').classList.toggle('hidden');
+                if ((document.querySelector('.options-bar.search').classList.contains('hidden'))&&(document.querySelector('.options-bar.favourite').classList.contains('hidden'))){
+                    document.querySelector('.options-bar.category').classList.toggle('hidden');
+                }
+                else if (document.querySelector('.options-bar.search').classList.contains('hidden')) {
+                    document.querySelector('.options-bar.favourite').classList.toggle('hidden');
+                    document.querySelector('.options-bar.category').classList.toggle('hidden');
+                }
+                else if (document.querySelector('.options-bar.favourite').classList.contains('hidden')) {
+                    document.querySelector('.options-bar.search').classList.toggle('hidden');
+                    document.querySelector('.options-bar.category').classList.toggle('hidden');
+                }
+            });
+            document.querySelector('#search-btn').addEventListener('click', function () {
+                if ((document.querySelector('.options-bar.category').classList.contains('hidden'))&&(document.querySelector('.options-bar.favourite').classList.contains('hidden'))){
+                    document.querySelector('.options-bar.search').classList.toggle('hidden');
+                }
+                else if (document.querySelector('.options-bar.category').classList.contains('hidden')) {
+                    document.querySelector('.options-bar.favourite').classList.toggle('hidden');
+                    document.querySelector('.options-bar.search').classList.toggle('hidden');
+                }
+                else if (document.querySelector('.options-bar.favourite').classList.contains('hidden')) {
+                    document.querySelector('.options-bar.search').classList.toggle('hidden');
+                    document.querySelector('.options-bar.category').classList.toggle('hidden');
+                }
+            });
+            document.querySelector('#favourite-btn').addEventListener('click', function () {
+                if ((document.querySelector('.options-bar.category').classList.contains('hidden'))&&(document.querySelector('.options-bar.search').classList.contains('hidden'))){
+                    document.querySelector('.options-bar.favourite').classList.toggle('hidden');
+                }
+                else if (document.querySelector('.options-bar.category').classList.contains('hidden')) {
+                    document.querySelector('.options-bar.favourite').classList.toggle('hidden');
+                    document.querySelector('.options-bar.search').classList.toggle('hidden');
+                }
+                else if (document.querySelector('.options-bar.search').classList.contains('hidden')) {
+                    document.querySelector('.options-bar.favourite').classList.toggle('hidden');
+                    document.querySelector('.options-bar.category').classList.toggle('hidden');
+                }
             });
         });
     </script>
@@ -242,7 +278,7 @@
                         '<h2>' + obj[i].fields.description + '</h2>' +
                         '<h3>Adres: ' + obj[i].fields.address + '</h3>' +
                         '<h3>Tal: ' + obj[i].fields.phone_number + '</h3>' +
-                        '<a href="'+ obj[i].fields.url + '"><h3>' + obj[i].fields.url + '</h3></a>'
+                        '<a href="'+ obj[i].fields.url + '" target="_blank"><h3>' + obj[i].fields.url + '</h3></a>'
                     );
 
 

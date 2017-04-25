@@ -24,7 +24,9 @@ class MainView(View):
 class PlacesView(APIView):
 
     def get(self, request):
-        places = Place.objects.filter(name__icontains=request.GET.get('text')).order_by('name')
+        if request.GET.get('text'):
+            places = Place.objects.filter(name__icontains=request.GET.get('text')).order_by('name')
+
         serializer = PlaceSerializer(places, many=True, context={"request": request})
         return Response(serializer.data)
 
