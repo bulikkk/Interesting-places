@@ -16,9 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from app_places.views import MainView
+from app_places.views import MainView, PlacesView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^places$', PlacesView.as_view()),
     url(r'^$', MainView.as_view(), name='main'),
 ]

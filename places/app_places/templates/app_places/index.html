@@ -33,9 +33,12 @@
       </div>
       <div class="options-bar search">
           <h1>wyszukaj</h1>
-          <ul id="search-result">
+          <form action="" method="GET" class="search-form">
+              <input id="search-input" type="text" placeholder="wyszukaj" name="search-input" oninput="loaddata();">
+          </form>
+          <div id="search-result">
 
-          </ul>
+          </div>
       </div>
 
       <div class="options-bar category hidden">
@@ -61,39 +64,30 @@
   </div>
 
     <script>
+        function loaddata() {
+            var text = $(document).find("#search-input").val();
+            console.log(text);
+            $("#search-result").children().remove();
 
-        $(document).ready(function() {
-            console.log("ready");
+            if (text) {
+                $.ajax({
+                    url: "/places?text=" + text,
+                    type: "GET",
+                    dataType: 'json',
 
-            var result = $("#search-result");
-            $.ajax({
-                url: '../../search-result.py',
-                type: "GET",
-                dataType: 'json'
-            }).done(function (response) {
-                response.forEach(function (element) {
-                    var newTitle = $("<h2 class='title'>");
-                    var div = $("<div class='desc hidden'>");
-                    newTitle.attr('data-id', element.id);
-                    newTitle.text(element.title);
-                    div.attr('data-num', element.id);
-                    books.append(newTitle);
-                    books.append(div);
-
-                    var author = $('<h3>');
-                    author.text(element.author);
-                    div.append(author);
-
-                    var publisher = $('<p>');
-                    publisher.text("Wydawca: " + element.publisher);
-                    div.append(publisher);
-
-                    var isbn = $('<p>');
-                    isbn.text("ISBN: " + element.isbn);
-                    div.append(isbn);
+                }).done(function (response) {
+                    console.log(response);
+                    var result = $('#search-result');
+                    response.forEach(function (element) {
+                        var newTitle = $("<h2 class='title'>");
+                        var div = $("<div class='desc'>");
+                        newTitle.text(element.name);
+                        result.append(newTitle);
+                        result.append(div);
+                    });
                 });
-            });
-        });
+            }
+        }
 
     </script>
 
@@ -142,8 +136,6 @@
             places = places.replace(/'/g, '\"')
 
             var obj = JSON.parse(places);
-
-            console.log(obj);
 
 // styled map stylers
             var styledMapType = new google.maps.StyledMapType(
